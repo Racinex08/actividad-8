@@ -3,38 +3,55 @@ import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
-          Scanner scanner = new Scanner(System.in);
-        interface OperacionMatematica {
-            String ejecutar();
+        Scanner scanner = new Scanner(System.in);
+
+        abstract class OperacionMatematica {
+            protected final double operando1;
+            protected final double operando2;
+
+            public OperacionMatematica(double operando1, double operando2) {
+                this.operando1 = operando1;
+                this.operando2 = operando2;
+            }
+
+            public abstract String ejecutar();
         }
-        class Suma extends  {
+
+        class Suma extends OperacionMatematica {
             public Suma(double operando1, double operando2) {
                 super(operando1, operando2);
             }
+
             public String ejecutar() {
                 return "Suma: " + (operando1 + operando2);
             }
         }
-        class Resta extends  {
+
+        class Resta extends OperacionMatematica {
             public Resta(double operando1, double operando2) {
                 super(operando1, operando2);
             }
+
             public String ejecutar() {
                 return "Resta: " + (operando1 - operando2);
             }
         }
-        class Multiplicacion extends  {
+
+        class Multiplicacion extends OperacionMatematica {
             public Multiplicacion(double operando1, double operando2) {
                 super(operando1, operando2);
             }
+
             public String ejecutar() {
                 return "Multiplicación: " + (operando1 * operando2);
             }
         }
-        class Division extends  {
+
+        class Division extends OperacionMatematica {
             public Division(double operando1, double operando2) {
                 super(operando1, operando2);
             }
+
             public String ejecutar() {
                 if (operando2 == 0) {
                     return "Error: división por cero";
@@ -94,9 +111,7 @@ public class Main {
                     break;
             }
 
-            if (operacion != null) {
-                System.out.println(operacion.ejecutar());
-            }
+            System.out.println(operacion.ejecutar());
         }
     }
 }
